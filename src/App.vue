@@ -28,6 +28,6 @@ export default {
 }
 
 html {
-  background: #f5f5f5;
+  /* background: #f5f5f5; */
 }
 </style>
