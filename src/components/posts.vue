@@ -7,7 +7,7 @@
         </div>
     <div class="pull-right">
             <div class="status" v-bind:class="post.completed ? 'done' : 'in-progress'"></div>
-            <button class="remove" v-on:click="removePost">remove</button>
+            <button class="remove" v-on:click="removePost($event, 10)">remove</button>
     </div>
     </div>
   </div>
@@ -39,7 +39,8 @@ export default {
               console.error(err); 
           });
       },
-      removePost: (id) => {
+      removePost: function (event, id) {
+		  console.log(id);
           return this.posts.fitler(post => post.id !== id);
       }
   },
