@@ -4,11 +4,16 @@
       <span>Todos</span>
       <form action="">
         <div class="form-group">
+          <div class="completed">
+            <input
+              type="checkbox"
+              name="status"
+              id="status"
+              @change="completed($event)"
+            />
+            <label for="status"> completed </label>
+          </div>
           <label for="search">
-            <label for="status">
-              completed
-              <input type="checkbox" name="status" id="status" @change="completed($event)">
-            </label>
             <input
               type="search"
               name="search"
@@ -45,9 +50,9 @@ export default {
     searchFor: function () {
       this.$refs.posts.filter(null, this.title);
     },
-    completed: function($event) {
-      this.$refs.posts.filter($event.target.checked, null)
-    }
+    completed: function ($event) {
+      this.$refs.posts.filter($event.target.checked, null);
+    },
   },
   components: {
     posts,
@@ -75,6 +80,10 @@ export default {
   font-size: 36px;
 }
 
+.form-group {
+  display: flex;
+}
+
 .search-input {
   padding: 10px 15px;
   margin-right: 20px;
@@ -96,5 +105,37 @@ export default {
 
 input:hover {
   cursor: pointer;
+}
+
+input[type="checkbox"] + label {
+  display: block;
+  margin: 0 .2em .2em 0;
+  cursor: pointer;
+  padding: 0.2em;
+}
+
+input[type="checkbox"] {
+  display: none;
+}
+
+input[type="checkbox"] + label:before {
+  content: "\2714";
+  border: 0.1em solid #303030;
+  border-radius: 0.2em;
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  padding-left: 0.2em;
+  padding-bottom: 0.3em;
+  margin-right: 0.2em;
+  vertical-align: bottom;
+  color: transparent;
+  transition: 0.2s;
+}
+
+input[type="checkbox"]:checked + label:before {
+  background-color: #d4edda;
+  border-color: #d4edda;
+  color: #fff;
 }
 </style>
